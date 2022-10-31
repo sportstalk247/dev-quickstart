@@ -1,14 +1,14 @@
 // Create a channel (app)
-// Give ownership of channel
-// and creating a chat room for each video they have,
-// or for when they create a new live stream on their end how to bind a chat room to it.
+// Give admin power in channel to show user settings.
+// Create a chat room for a piece of content.
+// Show how to enforce dedup/binding to external content using room customid
 
 const dotenv = require('dotenv')
 dotenv.config()
 const sportstalk = require('sportstalk-sdk');
 const management = require('./managementAPI');
 
-// Creates a sportstalk "application" that uses the global user DB
+// Creates a Sportstalk 24/7 "application" that uses the global user DB.
 async function createChannel(channelName) {
     const app = await management.makeApp(channelName);
     const access_token = await management.makeToken(app.id, "default");
@@ -27,6 +27,8 @@ async function run() {
             endpoint: process.env.API_URL,
         }
         const client = sportstalk.ChatClient.init(config);
+
+        // if the userid is the same, this is an update command.
         const adminUser = await client.createOrUpdateUser({
             userid: channel.name+'_admin',
             handle: 'admin',
@@ -48,8 +50,8 @@ async function run() {
         process.exit();
     }).catch(e=>{
         console.log(e.message);
-        console.log(e.body)
         process.exit();
     })
 }
+
 run();
