@@ -1,0 +1,19 @@
+{
+  "name": "recast-script",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bent": "^7.3.12",
+    "dotenv": "^16.0.3",
+    "request": "^2.88.2",
+    "request-promise-native": "^1.0.9",
+    "sportstalk-sdk": "^3.11.3"
+  }
+}
